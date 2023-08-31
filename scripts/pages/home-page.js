@@ -26,12 +26,11 @@ function render() {
       <main>
         <section class="container">
           <div class="header-home">
-              <h2 class="header-home-title">Doable</h3>
-              <a class="logout-link" href="#">Logout</a>
+          <img class="add-link" src="/assets/images/{ doable }.png" alt="" srcset="">
+          <a class="logout-link" href="#">Logout</a>
           </div>
 
           <div class="footer js-links-pages">
-          <img class="add-link" src="../../assets/images/add.png" alt="" srcset="">
           </div>
         </section>
       </main>
