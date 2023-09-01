@@ -53,8 +53,7 @@ function listenersubmitSignup() {
                 email: email.value,
                 password: password.value,
             };
-            await signUp(newUser);
-            const user = await login(newUser);
+            const user = await signUp(newUser);
             STORE.user = user;
             DOMHandler.load(homePage);
         });
