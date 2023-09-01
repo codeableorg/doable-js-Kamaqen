@@ -13,14 +13,6 @@ function listenerLogout() {
     });
 };
 
-// function listenerAddContact() {
-//     const add = document.querySelector(".add-link");
-//     add.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         DOMHandler.load(newContact);
-//     });
-// };
-
 function render() {
     return `
       <main>
@@ -41,8 +33,7 @@ const homePage = {
     },
     addListeners() {
         listenerLogout();
-        // listenerAddContact();
-        // Contacts.addListeners();
+        newTask.addListeners();
     },
 };
 export default homePage;

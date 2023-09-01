@@ -2,7 +2,6 @@ import { input } from "./input.js";
 import DOMHandler from "../dom-handler.js";
 import { createTask } from "../services/tasks-services.js";
 import STORE from "../store.js";
-import homePage from "../pages/home-page.js";
 
 function listenerAddTask() {
     const form = document.querySelector(".js-new-task-form");
@@ -11,7 +10,7 @@ function listenerAddTask() {
         const { title, due_date } = event.target;
         const data = {
             title: title.value,
-            due_date: due_date.value,
+            duedate: due_date.value,
         };
         const task = await createTask(data);
         STORE.tasks.push(task);
@@ -31,7 +30,7 @@ function render() {
                 required: true,
             })} 
             ${input({
-                id: "due-date",
+                id: "due_date",
                 type: "date",
                 placeholder: "mm / dd / yy",
                 required: false,
