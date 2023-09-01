@@ -27,8 +27,8 @@ function render() {
       <main>
         <section class="container">
           <div class="header-home">
-          <img class="add-link" src="/assets/images/{ doable }.png" alt="" srcset="">
-          <a class="logout-link" href="#">Logout</a>
+            <img class="add-link" src="/assets/images/{ doable }.png" alt="doable logo" srcset="">
+            <img class="logout-link" src="/assets/images/logout-icon.svg" alt="logout icon" srcset="">
           </div>
           ${Tasks}
           <div class="footer js-links-pages">
