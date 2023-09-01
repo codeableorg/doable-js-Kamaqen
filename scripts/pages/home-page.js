@@ -1,9 +1,8 @@
-// import Contacts from "../components/contacts.js";
+import newTask from "../components/new-task.js";
 import Tasks from "../components/tasks.js";
 import DOMHandler from "../dom-handler.js";
 import { logout } from "../services/session-services.js";
 import loginPage from "./login-page.js";
-// import newContact from "./new-page.js";
 
 function listenerLogout() {
     const link = document.querySelector(".logout-link");
@@ -31,9 +30,8 @@ function render() {
             <img class="logout-link" src="/assets/images/logout-icon.svg" alt="logout icon" srcset="">
           </div>
           ${Tasks}
-          <div class="footer js-links-pages">
-          </div>
         </section>
+        ${newTask}
       </main>
     `;
 }
