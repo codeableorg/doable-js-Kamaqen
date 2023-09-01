@@ -1,4 +1,5 @@
 // import Contacts from "../components/contacts.js";
+import Tasks from "../components/tasks.js";
 import DOMHandler from "../dom-handler.js";
 import { logout } from "../services/session-services.js";
 import loginPage from "./login-page.js";
@@ -29,7 +30,7 @@ function render() {
           <img class="add-link" src="/assets/images/{ doable }.png" alt="" srcset="">
           <a class="logout-link" href="#">Logout</a>
           </div>
-
+          ${Tasks}
           <div class="footer js-links-pages">
           </div>
         </section>
