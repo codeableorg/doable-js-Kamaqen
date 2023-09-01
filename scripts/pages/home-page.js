@@ -17,13 +17,10 @@ function render() {
     return `
       <main>
         <section class="container">
-          <div class="flex">
-            <div>
+          <div class="flex justify-between">
               <img class="add-link" src="/assets/images/{ doable }.png" alt="doable logo" srcset="">
-            </div>
-            <div>
+
               <img class="logout-link" src="/assets/images/logout-icon.svg" alt="logout icon" srcset="">
-            </div>
           </div>
           ${Tasks}
         </section>
