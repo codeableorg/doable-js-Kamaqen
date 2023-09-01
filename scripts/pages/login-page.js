@@ -55,9 +55,8 @@ function listenerSubmitLogin() {
                 email: email.value,
                 password: password.value,
             };
-            const user = await login(credentials);
-            STORE.user = user;
-            STORE.fetchTasks();
+            await login(credentials);
+            await STORE.fetchTasks();
             DOMHandler.load(homePage);
         });
     } catch (error) {
