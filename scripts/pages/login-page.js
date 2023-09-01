@@ -57,8 +57,7 @@ function listenerSubmitLogin() {
             };
             const user = await login(credentials);
             STORE.user = user;
-            console.log(STORE);
-            // STORE.fetchContacts();
+            STORE.fetchTasks();
             DOMHandler.load(homePage);
         });
     } catch (error) {
