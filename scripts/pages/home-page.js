@@ -37,6 +37,7 @@ const homePage = {
     addListeners() {
         listenerLogout();
         newTask.addListeners();
+        sort_filter.addListeners();
     },
 };
 export default homePage;
