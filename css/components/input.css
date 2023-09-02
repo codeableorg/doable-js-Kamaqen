@@ -163,7 +163,7 @@
   animation: tick 250ms ease-in forwards;
   background-color: var(--primary-300);
   border: 1px solid var(--primary-300);
-  background-image: url("assets/icons/check.svg");
+  background-image: url("/assets/images/check.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -205,3 +205,8 @@
 .checkbox__opt-group--horizontal {
   flex-direction: row;
 }
+
+/* .checkbox__input input[type="checkbox"] {
+  display: none;
+} */
+
