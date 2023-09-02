@@ -1,5 +1,16 @@
-// import DOMHandler from "../dom-handler.js";
+import Tasks from "./tasks.js";
+// import DOMHandler from "/scripts/dom-handler.js";
 import STORE from "/scripts/store.js";
+
+function loadAndRenderTasks() {
+  const tasksComponent = Tasks.toString(); // Render the "Tasks" component
+  const taskListContainer = document.querySelector(".js-task-list");
+
+  // Update the content of the task list container
+  if (taskListContainer) {
+    taskListContainer.innerHTML = tasksComponent;
+  }
+}
 
 // Function to sort tasks by importance
 function sortByImportance(taskA, taskB) {
@@ -32,38 +43,30 @@ function listenerSortTasks() {
   const sortSelect = document.getElementById("sortSelect");
   sortSelect.addEventListener("change", function () {
     const selectedValue = sortSelect.value;
+    console.log(selectedValue);
 
     if (selectedValue === "alphabetical") {
-      // Sort tasks alphabetically by name
+      // Sort tasks alphabetically by title
       STORE.tasks.sort((a, b) => a.title.localeCompare(b.title));
     } else if (selectedValue === "importance") {
-      // Sort tasks by importance (you may need to customize this)
+      // Sort tasks by importance
       STORE.tasks.sort(sortByImportance);
     } else if (selectedValue === "dueDate") {
-      // Sort tasks by due date (you may need to customize this)
+      // Sort tasks by due date
       STORE.tasks.sort(sortByDueDate);
     }
-    console.log(STORE.tasks)
-    // form.addEventListener("submit", async (event) => {
-    //     event.preventDefault();
-    //     const { title, due_date } = event.target;
-    //     const data = {
-    //         title: title.value,
-    //         duedate: due_date.value,
-    //     };
-    //     const task = await createTask(data);
-    //     STORE.tasks.push(task);
-    //     DOMHandler.reload();
-    });
+    console.log(STORE.tasks);
+    loadAndRenderTasks();
+  });
 }
 
 function render() {
     return `
       <form class="js-new-task-form">
           <div class="new-task-form">
-            <label for="sortSelect">Sort:</label>
+            <label for="sortSelect">Sort</label>
             <select id="sortSelect" name="sort">
-              <option value="alphabetical">Alphabetical (a-z)</option>
+              <option value="alphabetical" selected>Alphabetical (a-z)</option>
               <option value="importance">Importance</option>
               <option value="dueDate">Due Date</option>
             </select>
