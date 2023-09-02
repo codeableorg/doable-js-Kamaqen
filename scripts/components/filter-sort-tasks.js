@@ -80,6 +80,7 @@ function render() {
           </div>
       </form>
     `;
+    
 }
 
 const sort_filter = {

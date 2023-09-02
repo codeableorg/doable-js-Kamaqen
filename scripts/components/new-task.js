@@ -36,8 +36,8 @@ function render() {
                 required: false,
             })}
             </div>
-            <div class="footer js-links-pages">
-                <button class="button button--primary">Add Task</button>
+            <div class="">
+                <button class="button button--primary full-width">Add Task</button>
             </div>
         </form>
     `;

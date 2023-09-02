@@ -161,8 +161,8 @@
 
 .checkbox__input:checked {
   animation: tick 250ms ease-in forwards;
-  background-color: var(--primary-300);
-  border: 1px solid var(--primary-300);
+  background-color: var(--primary-500);
+  border: 1px solid var(--primary-500);
   background-image: url("/assets/images/check.png");
   background-repeat: no-repeat;
   background-position: center;
