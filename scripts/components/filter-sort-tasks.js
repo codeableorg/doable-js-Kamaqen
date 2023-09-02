@@ -1,22 +1,61 @@
-// import { input } from "./input.js";
 // import DOMHandler from "../dom-handler.js";
-// import { createTask } from "../services/tasks-services.js";
-// import STORE from "../store.js";
+import STORE from "/scripts/store.js";
 
-// function listenerAddTask() {
-//     const form = document.querySelector(".js-new-task-form");
-//     form.addEventListener("submit", async (event) => {
-//         event.preventDefault();
-//         const { title, due_date } = event.target;
-//         const data = {
-//             title: title.value,
-//             duedate: due_date.value,
-//         };
-//         const task = await createTask(data);
-//         STORE.tasks.push(task);
-//         DOMHandler.reload();
-//     });
-// }
+// Function to sort tasks by importance
+function sortByImportance(taskA, taskB) {
+  if (taskA.important && !taskB.important) {
+    return -1;
+  } else if (!taskA.important && taskB.important) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+// Function to sort tasks by due date
+function sortByDueDate(taskA, taskB) {
+  const dateA = taskA.due_date ? new Date(taskA.due_date) : null;
+  const dateB = taskB.due_date ? new Date(taskB.due_date) : null;
+
+  if (dateA === null && dateB === null) {
+    return 0; // Both tasks have no due date, no change in order.
+  } else if (dateA === null) {
+    return 1; // Task A has no due date, it should come after task B.
+  } else if (dateB === null) {
+    return -1; // Task B has no due date, it should come after task A.
+  } else {
+    return dateA - dateB; // Compare due dates for other cases.
+  }
+}
+
+function listenerSortTasks() {
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", function () {
+    const selectedValue = sortSelect.value;
+
+    if (selectedValue === "alphabetical") {
+      // Sort tasks alphabetically by name
+      STORE.tasks.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (selectedValue === "importance") {
+      // Sort tasks by importance (you may need to customize this)
+      STORE.tasks.sort(sortByImportance);
+    } else if (selectedValue === "dueDate") {
+      // Sort tasks by due date (you may need to customize this)
+      STORE.tasks.sort(sortByDueDate);
+    }
+    console.log(STORE.tasks)
+    // form.addEventListener("submit", async (event) => {
+    //     event.preventDefault();
+    //     const { title, due_date } = event.target;
+    //     const data = {
+    //         title: title.value,
+    //         duedate: due_date.value,
+    //     };
+    //     const task = await createTask(data);
+    //     STORE.tasks.push(task);
+    //     DOMHandler.reload();
+    });
+}
 
 function render() {
     return `
@@ -38,6 +77,7 @@ const sort_filter = {
         return render();
     },
     addListeners() {
+      listenerSortTasks()
     },
 };
 export default sort_filter;
