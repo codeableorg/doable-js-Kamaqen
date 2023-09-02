@@ -10,7 +10,7 @@ function listenerAddTask() {
         const { title, due_date } = event.target;
         const data = {
             title: title.value,
-            duedate: due_date.value,
+            due_date: due_date.value,
         };
         const task = await createTask(data);
         STORE.tasks.push(task);
@@ -20,7 +20,7 @@ function listenerAddTask() {
 
 function render() {
     return `
-    <section class="container">
+    
         <form class="js-new-task-form">
             <div class="new-task-form">
             ${input({
@@ -40,7 +40,6 @@ function render() {
                 <button class="button-link">Add Task</button>
             </div>
         </form>
-    </section>
     `;
 }
 

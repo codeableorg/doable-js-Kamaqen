@@ -1,3 +1,4 @@
+import sort_filter from "../components/filter-sort-tasks.js";
 import newTask from "../components/new-task.js";
 import Tasks from "../components/tasks.js";
 import DOMHandler from "../dom-handler.js";
@@ -21,9 +22,11 @@ function render() {
             <img class="add-link" src="/assets/images/{ doable }.png" alt="doable logo" srcset="">
             <img class="logout-link" src="/assets/images/logout-icon.svg" alt="logout icon" srcset="">
           </div>
+          ${sort_filter}
           ${Tasks}
+          ${newTask}
         </section>
-        ${newTask}
+        
       </main>
     `;
 }
