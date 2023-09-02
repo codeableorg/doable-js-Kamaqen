@@ -37,7 +37,7 @@ function render() {
             })}
             </div>
             <div class="footer js-links-pages">
-                <button class="button-link">Add Task</button>
+                <button class="button button--primary">Add Task</button>
             </div>
         </form>
     `;

@@ -62,14 +62,21 @@ function listenerSortTasks() {
 
 function render() {
     return `
-      <form class="js-new-task-form">
-          <div class="new-task-form">
-            <label for="sortSelect">Sort</label>
+      <form class="js-new-task-form flex flex-column gap-2">
+          <div class="flex gap-4">
+            <p>Sort</p>
             <select id="sortSelect" name="sort">
               <option value="alphabetical" selected>Alphabetical (a-z)</option>
               <option value="importance">Importance</option>
               <option value="dueDate">Due Date</option>
             </select>
+          </div>
+          <div class="flex gap-2">
+            <p>Show</p>
+            <input class="checkbox checkbox__input" type="checkbox" id="onlyImportant" name="onlyImportant">
+            <label for="onlyImportant">Only Important</label>
+            <input class="checkbox checkbox__input" type="checkbox" id="onlyPending" name="onlyPending">
+            <label for="onlyPending">Only Pending</label>
           </div>
       </form>
     `;
