@@ -8,6 +8,9 @@ function renderTask(task) {
   if (dueDate) {
     formattedDueDate = dueDate.toDateString();
   }
+
+  const imgSrc = `/assets/images/important-${task.important ? 'true' : 'false'}.png`;
+
   return `
     <li class="flex justify-between">
       <div class="">
@@ -18,7 +21,7 @@ function renderTask(task) {
         <p class="" data-id="">${formattedDueDate}</p>
       </div>
       <div class="">
-        <img id="${task.id}" class="" src="/assets/images/important-false.png" />
+        <img id="${task.id}" class="js-important-toggle" src=${imgSrc} />
       </div>
     </li>
   `;
@@ -34,13 +37,12 @@ function render() {
 }
 
 // Add event listener to checkboxes
-function addCheckboxListeners() {
+function addListListeners() {
   const checkboxes = document.querySelectorAll(".js-checkbox-list");
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener("change", async (event) => {
       const taskId = event.target.getAttribute("data-id");
       const task = STORE.tasks.find(task => task.id === parseInt(taskId));
-      console.log(task);
       
       if (task) {
         task.completed = event.target.checked;
@@ -55,15 +57,38 @@ function addCheckboxListeners() {
       }
     });
   });
-}
 
+  // Add event listener to image elements for toggling 'important' property
+  const importantImages = document.querySelectorAll(".js-important-toggle");
+  importantImages.forEach(img => {
+    img.addEventListener("click", async (event) => {
+      const taskId = event.target.id;
+      const task = STORE.tasks.find(task => task.id === parseInt(taskId));
+      
+      if (task) {
+        task.important = !task.important;
+
+        // Update the task in the API
+        try {
+          await editTask(taskId, { important: task.important });
+          console.log("Task 'important' property updated in the API.");
+        } catch (error) {
+          console.error("Error updating task 'important' property in the API:", error);
+        }
+
+        // Update the image source to reflect the new 'important' state
+        event.target.src = `/assets/images/${task.important ? 'important-true' : 'important-false'}.png`;
+      }
+    });
+  });
+}
 
 const Tasks = {
     toString() {
         return render();
     },
     addListeners() {
-      addCheckboxListeners();
+      addListListeners();
     },
 };
 export default Tasks;
