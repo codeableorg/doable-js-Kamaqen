@@ -27,56 +27,8 @@ function sortByDueDate(taskA, taskB) {
     return dateA - dateB; // Compare due dates for other cases.
   }
 }
-// function renderTask(task) {
-//   return `
-// <li class="flex justify-between">
-//   <div class="">
-//     <input class="checkbox checkbox__input" type="checkbox">
-//   </div>
-//   <div class="flex flex-column">
-//     <p class="" data-id=${task.id} >${task.title}</p>
-//     <p class="" data-id="" >${task.due_date || ""}</p>
-//   </div>
-//   <div class="">
-//     <img id=${task.id} class="" src="/assets/images/important-false.png" />
-//   </div>
-// </li>
-// `;
-// }
 
-// function renderTasks() {
-//   const onlyImportantCheckbox = document.getElementById("onlyImportant");
-//   const onlyPendingCheckbox = document.getElementById("onlyPending");
-//   const taskListContainer = document.querySelector(".js-task-list");
 
-//   if (!taskListContainer) return;
-
-//   let filteredTasks = [...STORE.tasks]; // Make a copy of your tasks
-
-//   if (onlyImportantCheckbox.checked) {
-//     // Filter tasks to show only important tasks
-//     filteredTasks = filteredTasks.filter((task) => task.important === true);
-//   }
-
-//   if (onlyPendingCheckbox.checked) {
-//     // Filter tasks to show only pending tasks (completed: false)
-//     filteredTasks = filteredTasks.filter((task) => task.completed === false);
-//   }
-
-//   // Render the filtered tasks
-//   taskListContainer.innerHTML = filteredTasks.map(renderTask).join("");
-// }
-
-// Event listener for the checkboxes
-// function addCheckboxListeners() {
-//   const onlyImportantCheckbox = document.getElementById("onlyImportant");
-//   const onlyPendingCheckbox = document.getElementById("onlyPending");
-
-//   if (onlyImportantCheckbox && onlyPendingCheckbox) {
-//     onlyImportantCheckbox.addEventListener("change", renderTasks);
-//     onlyPendingCheckbox.addEventListener("change", renderTasks);
-//   }
-// }
 
 function listenerSortTasks() {
   const sortSelect = document.getElementById("sortSelect");
@@ -95,6 +47,39 @@ function listenerSortTasks() {
     }
     loadAndRenderTasks();
   });
+}
+
+function toggleCompletedTasks() {
+  const tasks = document.querySelectorAll(".js-checkbox-list");
+
+  tasks.forEach((task) => {
+    const taskId = task.getAttribute("data-id");
+    const taskData = STORE.tasks.find((task) => task.id === parseInt(taskId));
+
+    if (taskData) {
+      const onlyPending = document.getElementById("onlyPending");
+      if (onlyPending && onlyPending.checked) {
+        // Check if the task is completed and toggle visibility accordingly
+        if (taskData.completed) {
+          task.parentNode.parentNode.style.display = "none";
+        } else {
+          task.parentNode.parentNode.style.display = "flex";
+        }
+      } else {
+        // Show all tasks when "Only Pending" checkbox is not checked
+        task.parentNode.parentNode.style.display = "flex";
+      }
+    }
+  });
+}
+
+function addPendingListener() {
+  // Add an event listener to a checkbox with id "onlyPending"
+  const onlyPending = document.getElementById("onlyPending");
+  console.log(onlyPending);
+  if (onlyPending) {
+    onlyPending.addEventListener("click", toggleCompletedTasks);
+  }
 }
 
 function render() {
@@ -126,7 +111,7 @@ const sort_filter = {
     },
     addListeners() {
       listenerSortTasks();
-      // addCheckboxListeners();
+      addPendingListener();
     },
 };
 export default sort_filter;
