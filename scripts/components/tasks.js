@@ -23,8 +23,11 @@ function renderTask(task) {
   // Add the "completed-task" class if the task is completed
   const notPendingClass = task.completed ? "completed-task" : "";
 
+  // Add the class "not-important-task" to non-important tasks
+  const notImportantClass = !task.important ? "not-important-task" : "";
+
   return `
-    <li class="flex justify-between ${notPendingClass}">
+    <li class="flex justify-between ${notPendingClass} ${notImportantClass}">
       <div class="">
         <input class="checkbox checkbox__input js-checkbox-list" type="checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''}>
       </div>
