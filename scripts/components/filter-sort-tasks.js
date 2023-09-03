@@ -38,56 +38,56 @@ function sortByDueDate(taskA, taskB) {
     return dateA - dateB; // Compare due dates for other cases.
   }
 }
-function renderTask(task) {
-  return `
-<li class="flex justify-between">
-  <div class="">
-    <input class="checkbox checkbox__input" type="checkbox">
-  </div>
-  <div class="flex flex-column">
-    <p class="" data-id=${task.id} >${task.title}</p>
-    <p class="" data-id="" >${task.due_date || ""}</p>
-  </div>
-  <div class="">
-    <img id=${task.id} class="" src="/assets/images/important-false.png" />
-  </div>
-</li>
-`;
-}
+// function renderTask(task) {
+//   return `
+// <li class="flex justify-between">
+//   <div class="">
+//     <input class="checkbox checkbox__input" type="checkbox">
+//   </div>
+//   <div class="flex flex-column">
+//     <p class="" data-id=${task.id} >${task.title}</p>
+//     <p class="" data-id="" >${task.due_date || ""}</p>
+//   </div>
+//   <div class="">
+//     <img id=${task.id} class="" src="/assets/images/important-false.png" />
+//   </div>
+// </li>
+// `;
+// }
 
-function renderTasks() {
-  const onlyImportantCheckbox = document.getElementById("onlyImportant");
-  const onlyPendingCheckbox = document.getElementById("onlyPending");
-  const taskListContainer = document.querySelector(".js-task-list");
+// function renderTasks() {
+//   const onlyImportantCheckbox = document.getElementById("onlyImportant");
+//   const onlyPendingCheckbox = document.getElementById("onlyPending");
+//   const taskListContainer = document.querySelector(".js-task-list");
 
-  if (!taskListContainer) return;
+//   if (!taskListContainer) return;
 
-  let filteredTasks = [...STORE.tasks]; // Make a copy of your tasks
+//   let filteredTasks = [...STORE.tasks]; // Make a copy of your tasks
 
-  if (onlyImportantCheckbox.checked) {
-    // Filter tasks to show only important tasks
-    filteredTasks = filteredTasks.filter((task) => task.important === true);
-  }
+//   if (onlyImportantCheckbox.checked) {
+//     // Filter tasks to show only important tasks
+//     filteredTasks = filteredTasks.filter((task) => task.important === true);
+//   }
 
-  if (onlyPendingCheckbox.checked) {
-    // Filter tasks to show only pending tasks (completed: false)
-    filteredTasks = filteredTasks.filter((task) => task.completed === false);
-  }
+//   if (onlyPendingCheckbox.checked) {
+//     // Filter tasks to show only pending tasks (completed: false)
+//     filteredTasks = filteredTasks.filter((task) => task.completed === false);
+//   }
 
-  // Render the filtered tasks
-  taskListContainer.innerHTML = filteredTasks.map(renderTask).join("");
-}
+//   // Render the filtered tasks
+//   taskListContainer.innerHTML = filteredTasks.map(renderTask).join("");
+// }
 
 // Event listener for the checkboxes
-function addCheckboxListeners() {
-  const onlyImportantCheckbox = document.getElementById("onlyImportant");
-  const onlyPendingCheckbox = document.getElementById("onlyPending");
+// function addCheckboxListeners() {
+//   const onlyImportantCheckbox = document.getElementById("onlyImportant");
+//   const onlyPendingCheckbox = document.getElementById("onlyPending");
 
-  if (onlyImportantCheckbox && onlyPendingCheckbox) {
-    onlyImportantCheckbox.addEventListener("change", renderTasks);
-    onlyPendingCheckbox.addEventListener("change", renderTasks);
-  }
-}
+//   if (onlyImportantCheckbox && onlyPendingCheckbox) {
+//     onlyImportantCheckbox.addEventListener("change", renderTasks);
+//     onlyPendingCheckbox.addEventListener("change", renderTasks);
+//   }
+// }
 
 function listenerSortTasks() {
   const sortSelect = document.getElementById("sortSelect");
@@ -137,7 +137,7 @@ const sort_filter = {
     },
     addListeners() {
       listenerSortTasks();
-      addCheckboxListeners();
+      // addCheckboxListeners();
     },
 };
 export default sort_filter;
