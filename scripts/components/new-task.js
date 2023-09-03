@@ -1,6 +1,6 @@
 import { input } from "./input.js";
 import DOMHandler from "../dom-handler.js";
-import { createTask } from "../services/tasks-services.js";
+import { createTask } from "/scripts/services/tasks-services.js";
 import STORE from "../store.js";
 
 function listenerAddTask() {
