@@ -73,12 +73,35 @@ function toggleCompletedTasks() {
   });
 }
 
-function addPendingListener() {
+function toggleNonImportantTasks() {
+  const onlyImportantCheckbox = document.getElementById("onlyImportant");
+  const nonImportantTasks = document.querySelectorAll('.js-task-list .not-important-task');
+
+  if (!onlyImportantCheckbox) return;
+
+  nonImportantTasks.forEach((task) => {
+    // Toggle the visibility by changing the CSS "display" property
+    if (onlyImportantCheckbox.checked) {
+      task.style.display = "none";
+    } else {
+      task.style.display = "flex";
+    }
+  });
+}
+
+function addCheckboxListeners() {
   // Add an event listener to a checkbox with id "onlyPending"
   const onlyPending = document.getElementById("onlyPending");
-  console.log(onlyPending);
   if (onlyPending) {
     onlyPending.addEventListener("click", toggleCompletedTasks);
+  }
+  // Add an event listener to the "Only Important" checkbox
+  const onlyImportantCheckbox = document.getElementById("onlyImportant");
+  if (onlyImportantCheckbox) {
+    onlyImportantCheckbox.addEventListener("change", function () {
+      // Call the toggleNonImportantTasks function when the checkbox state changes
+      toggleNonImportantTasks();
+    });
   }
 }
 
@@ -111,7 +134,7 @@ const sort_filter = {
     },
     addListeners() {
       listenerSortTasks();
-      addPendingListener();
+      addCheckboxListeners();
     },
 };
 export default sort_filter;
