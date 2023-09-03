@@ -1,16 +1,5 @@
-import Tasks from "./tasks.js";
-// import DOMHandler from "/scripts/dom-handler.js";
+import { loadAndRenderTasks } from "./reload-tasks.js";
 import STORE from "/scripts/store.js";
-
-function loadAndRenderTasks() {
-  const tasksComponent = Tasks.toString(); // Render the "Tasks" component
-  const taskListContainer = document.querySelector(".js-task-list");
-
-  // Update the content of the task list container
-  if (taskListContainer) {
-    taskListContainer.innerHTML = tasksComponent;
-  }
-}
 
 // Function to sort tasks by importance
 function sortByImportance(taskA, taskB) {

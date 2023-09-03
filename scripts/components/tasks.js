@@ -1,5 +1,10 @@
 import { editTask } from "../services/tasks-services.js";
 import STORE from "../store.js";
+import DOMHandler from "/scripts/dom-handler.js";
+
+// Define CSS classes
+const completedClass = "task-completed";
+const notCompletedClass = "task-not-completed";
 
 function renderTask(task) {
   const dueDate = task.due_date ? new Date(task.due_date) : "";
@@ -9,7 +14,11 @@ function renderTask(task) {
     formattedDueDate = dueDate.toDateString();
   }
 
+  // Determine the image source based on the 'important' property
   const imgSrc = `/assets/images/important-${task.important ? 'true' : 'false'}.png`;
+
+  // Determine the task title class based on the 'completed' property
+  const titleClass = task.completed ? completedClass : notCompletedClass;
 
   return `
     <li class="flex justify-between">
@@ -17,7 +26,7 @@ function renderTask(task) {
         <input class="checkbox checkbox__input js-checkbox-list" type="checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''}>
       </div>
       <div class="flex flex-column">
-        <p class="" data-id="${task.id}">${task.title}</p>
+        <p class="${titleClass} data-id="${task.id}">${task.title}</p>
         <p class="" data-id="">${formattedDueDate}</p>
       </div>
       <div class="">
@@ -54,6 +63,9 @@ function addListListeners() {
         } catch (error) {
           console.error("Error updating task in the API:", error);
         }
+        
+        // Update the UI and render tasks
+        DOMHandler.reload();
       }
     });
   });
@@ -76,8 +88,8 @@ function addListListeners() {
           console.error("Error updating task 'important' property in the API:", error);
         }
 
-        // Update the image source to reflect the new 'important' state
-        event.target.src = `/assets/images/${task.important ? 'important-true' : 'important-false'}.png`;
+        // Update the UI and render tasks
+        DOMHandler.reload();
       }
     });
   });
