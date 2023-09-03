@@ -20,8 +20,11 @@ function renderTask(task) {
   // Determine the task title class based on the 'completed' property
   const titleClass = task.completed ? completedClass : notCompletedClass;
 
+  // Add the "completed-task" class if the task is completed
+  const notPendingClass = task.completed ? "completed-task" : "";
+
   return `
-    <li class="flex justify-between">
+    <li class="flex justify-between ${notPendingClass}">
       <div class="">
         <input class="checkbox checkbox__input js-checkbox-list" type="checkbox" data-id="${task.id}" ${task.completed ? 'checked' : ''}>
       </div>
